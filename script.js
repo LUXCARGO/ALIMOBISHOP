@@ -1,9 +1,17 @@
-fetch("alimobi-production.up.railway.app")
+let allProducts = [];
+
+fetch("https://ТВОЙ-ДОМЕН.up.railway.app/api/products")
 .then(res => res.json())
 .then(data => {
-    let container = document.getElementById("products");
+    allProducts = data;
+    displayProducts(allProducts);
+});
 
-    data.forEach(p => {
+function displayProducts(products) {
+    let container = document.getElementById("products");
+    container.innerHTML = "";
+
+    products.forEach(p => {
         container.innerHTML += `
             <div class="card">
                 <img src="${p.image}">
@@ -13,4 +21,14 @@ fetch("alimobi-production.up.railway.app")
             </div>
         `;
     });
-});
+}
+
+function searchProducts() {
+    let value = document.getElementById("search").value.toLowerCase();
+
+    let filtered = allProducts.filter(p =>
+        p.name.toLowerCase().includes(value)
+    );
+
+    displayProducts(filtered);
+}

@@ -1,30 +1,81 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    margin: 0;
     background: #f5f5f5;
     text-align: center;
 }
+
+h1 {
+    margin: 20px 0;
+}
+
 #search {
-    width: 60%;
-    padding: 10px;
-    margin: 20px;
+    width: 90%;
+    max-width: 500px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    gap: 15px;
+    padding: 15px;
+}
+
+/* 📱 Мобильные — 1 колонка */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 💻 Планшет — 2 колонки */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 🖥 ПК — 3-4 колонки */
+@media (min-width: 1025px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
 .card {
     background: white;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
     border-radius: 8px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 10px 0 5px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.card b {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #111;
 }
